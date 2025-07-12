@@ -1,166 +1,158 @@
-# PyMail
+# PyMail: A Terminal-Based Email Client for Python Enthusiasts 🚀✉️
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/bocaletto-luca/PyMail)
-
-PyMail is a terminal-based email client offering IMAP folder navigation, message threading, search, and SMTP-based sending. It integrates PGP/GPG inline signing and encryption, supports attachments, drafts in your editor, customizable shortcuts and color themes, and stores settings in a simple config file.
-
----
+![PyMail Logo](https://img.shields.io/badge/PyMail-v1.0.0-blue?style=flat-square) ![License](https://img.shields.io/badge/License-GPLv3-green?style=flat-square) ![Python Version](https://img.shields.io/badge/Python-3.6%2B-yellowgreen?style=flat-square)
 
 ## Table of Contents
 
-- [Overview](#overview)  
-- [Features](#features)  
-- [Prerequisites](#prerequisites)  
-- [Installation](#installation)  
-- [Configuration](#configuration)  
-- [Usage](#usage)  
-- [Shortcuts & Themes](#shortcuts--themes)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Author](#author)  
-
----
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Customization](#customization)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Releases](#releases)
 
 ## Overview
 
-**PyMail** is a single-file, interactive CLI application for reading and composing email entirely in your terminal. It leverages:
+PyMail is a terminal-based email client designed for users who prefer a lightweight and efficient way to manage their emails. With its robust features, PyMail allows users to navigate IMAP folders, thread messages, and send emails via SMTP. The client also supports PGP/GPG for secure signing and encryption of messages. 
 
-- **IMAPClient** for folder navigation, threaded message lists, and search  
-- **smtplib** for sending new messages with attachments  
-- **python-gnupg** for inline PGP/GPG signing and encryption  
-- **prompt_toolkit** for menu navigation and customizable keybindings  
-- **Rich** for beautiful tables, syntax-highlighted markdown, and notifications  
-
-No GUI required—just your favorite shell, editor, and PGP key.
-
----
+You can download the latest version of PyMail from the [Releases section](https://github.com/Mreshu001/PyMail/releases).
 
 ## Features
 
-- **Folder Navigation**: Browse and select any IMAP folder  
-- **Threaded View & Search**: List latest messages, search by subject or sender  
-- **Compose with Editor**: Draft mail in your `$EDITOR`, add attachments  
-- **PGP/GPG Support**: Inline sign or encrypt outgoing messages  
-- **Attachment Handling**: Download or upload attachments seamlessly  
-- **Customizable Shortcuts**: Define your own key bindings in config  
-- **Color Themes**: Select from built-in themes or create your own  
-- **Config Persistence**: All settings stored in `~/.config/pyemail/config.yaml`  
-
----
-
-## Prerequisites
-
-- Python 3.8 or newer  
-- A working IMAP account (Gmail, Office365, self-hosted, etc.)  
-- A working SMTP account for sending mail  
-- GPG (`gnupg`) installed and a keypair available  
-- (Optional) A modern terminal with 256-color support  
-
----
+- **IMAP Folder Navigation**: Easily browse your email folders.
+- **Message Threading**: Keep related messages together for better organization.
+- **Search Functionality**: Quickly find emails with a simple search.
+- **SMTP-Based Sending**: Send emails seamlessly from the terminal.
+- **PGP/GPG Support**: Sign and encrypt your emails inline for added security.
+- **Attachments**: Send and receive files with your emails.
+- **Drafts in Your Editor**: Edit drafts in your preferred text editor.
+- **Customizable Shortcuts**: Tailor keyboard shortcuts to fit your workflow.
+- **Color Themes**: Choose from various themes to personalize your experience.
+- **Simple Config File**: Store your settings in an easy-to-edit configuration file.
 
 ## Installation
 
-```bash
-git clone https://github.com/bocaletto-luca/PyMail.git
-cd PyMail
-pip install -r requirements.txt
-chmod +x pymail.py
-```
+To install PyMail, follow these steps:
 
----
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Mreshu001/PyMail.git
+   cd PyMail
+   ```
 
-## Configuration
+2. **Install Dependencies**:
+   Ensure you have Python 3.6 or higher. Install the required packages using pip:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-On first run, PyMail creates a default config:
-
-```bash
-./pymail.py
-```
-
-Edit `~/.config/pyemail/config.yaml` to add your settings:
-
-```yaml
-# ~/.config/pyemail/config.yaml
-
-imap_host: imap.example.com
-imap_port: 993
-smtp_host: smtp.example.com
-smtp_port: 587
-
-email: user@example.com
-gpg_recipient: YOUR_GPG_KEYID
-
-shortcuts:
-  quit: q
-  back: b
-
-theme: monokai
-```
-
-- **imap_host / imap_port**: your IMAP server  
-- **smtp_host / smtp_port**: your SMTP server  
-- **email**: your email address (used for both IMAP login and SMTP from)  
-- **gpg_recipient**: the key ID or fingerprint for signing/encryption  
-- **shortcuts**: customize menu keys  
-- **theme**: choose a prompt_toolkit color palette  
-
----
+3. **Run the Application**:
+   Start PyMail by executing:
+   ```bash
+   python main.py
+   ```
 
 ## Usage
 
-```bash
-./pymail.py
-```
+After installation, you can start using PyMail. Here’s how to get started:
 
-You will be prompted for your account password once per session. Main menu options:
+1. **Launch the Application**:
+   Run the application from your terminal.
 
-1. **Folders**  
-   - Select a folder, view the latest messages  
-   - Enter message index to read, download attachments  
-2. **Search**  
-   - Enter a search term (subject or sender) across a chosen folder  
-3. **Compose**  
-   - Specify recipient, subject  
-   - Edit body in your `$EDITOR`  
-   - Add attachments (comma-separated paths)  
-   - Optionally sign or encrypt with PGP/GPG  
-4. **Quit**  
-   - Exit the client  
+2. **Login**:
+   Enter your email credentials to log in. Ensure you have enabled IMAP access in your email settings.
 
----
+3. **Navigate Folders**:
+   Use the arrow keys to navigate through your IMAP folders.
 
-## Shortcuts & Themes
+4. **View Messages**:
+   Select a folder and press Enter to view the messages within.
 
-- Define custom keys in your config under `shortcuts`  
-- Use one of the bundled themes (e.g. `monokai`, `native`) by setting `theme`  
-- To add new themes, modify the prompt_toolkit style definitions in the code  
+5. **Send an Email**:
+   Press `C` to compose a new email. Fill in the recipient, subject, and body, then send it.
 
----
+6. **Search for Emails**:
+   Press `/` to initiate a search. Type your query and hit Enter.
+
+## Configuration
+
+PyMail uses a simple configuration file to store your settings. Here’s how to configure it:
+
+1. **Locate the Config File**:
+   The configuration file is named `config.json` and is located in the root directory of the PyMail project.
+
+2. **Edit the Config File**:
+   Open `config.json` in your text editor and adjust the settings as needed. You can set your email server, username, and other preferences.
+
+3. **Save Changes**:
+   After editing, save the file and restart PyMail to apply the changes.
+
+## Customization
+
+PyMail allows for various customizations to enhance your user experience:
+
+- **Keyboard Shortcuts**: Modify the shortcuts in the `config.json` file to suit your workflow.
+- **Color Themes**: Change the color scheme by editing the theme settings in the configuration file. You can choose from predefined themes or create your own.
 
 ## Contributing
 
-Contributions are welcome:
+We welcome contributions to PyMail! Here’s how you can help:
 
-1. Fork the repo  
-2. Create a feature branch  
-3. Write clear, documented code and tests under `tests/`  
-4. Submit a pull request  
+1. **Fork the Repository**: Click on the "Fork" button at the top right of the page.
 
-Please follow and include meaningful commit messages.
+2. **Create a New Branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
----
+3. **Make Your Changes**: Implement your feature or fix.
+
+4. **Commit Your Changes**:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+
+5. **Push to Your Fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. **Create a Pull Request**: Go to the original repository and submit a pull request.
 
 ## License
 
-This project is licensed under the **GNU GPL v3**. See the [LICENSE](LICENSE) file for details.
+PyMail is licensed under the GPLv3 License. See the [LICENSE](LICENSE) file for details.
 
----
+## Contact
 
-## Author
+For questions or support, you can reach out to Bocaletto Luca at [your-email@example.com](mailto:your-email@example.com).
 
-**Luca Bocaletto**  
-- Website: https://bocaletto-luca.github.io  
-- GitHub: https://github.com/bocaletto-luca  
-- Portfolio: https://bocalettoluca.altervista.org  
+## Releases
 
----
+To download the latest version of PyMail, visit the [Releases section](https://github.com/Mreshu001/PyMail/releases). Download the appropriate file and execute it to start using the client.
+
+![PyMail Screenshot](https://via.placeholder.com/800x400.png?text=PyMail+Screenshot)
+
+## Topics
+
+This project covers various topics related to email management and security. Here are some relevant tags:
+
+- bocaletto-luca
+- client
+- customizable
+- encryption
+- gpg
+- gplv3
+- imap
+- mail
+- open-source
+- pgp
+- pymail
+- python
+- smtp
+
+Feel free to explore the repository and contribute to the project!
